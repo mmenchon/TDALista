@@ -6,6 +6,7 @@ Lista<T>::Lista()
 {
     primero = 0;
     ultimo = 0;
+    iterator = primero;
     cantidad = 0;
 }
 
@@ -87,14 +88,82 @@ Lista<T>::~Lista()
     //dtor
 }
 
-template<typename T>
-void Lista<T>::imprimir()
+template <typename T>
+bool Lista<T>::esVacia() const
 {
-    nodo* punt = primero;
-    while (punt != 0)
+    return (primero == 0);
+}
+
+template <typename T>
+bool Lista<T>::esta(T elemento)
+{
+    return esta(primero, elemento);
+}
+
+template <typename T>
+bool Lista<T>::esta(nodo* punt, T elemento)
+{
+    if (punt != 0)
     {
-        cout << punt->elemento << endl;
-        punt=punt->sig;
+        if (punt->elemento == elemento)
+            return true;
+        else
+            return esta(punt->sig, elemento);
+    }
+    else
+        return false;
+}
+
+template <typename T>
+const T &Lista<T>::devolver(int pos)
+{
+    if (pos < cantidad)
+    {
+        int c = 0;
+       return devolver(primero, pos,c);
     }
 }
+
+template <typename T>
+const T &Lista<T>::devolver(nodo *punt, int pos, int c)
+{
+    if (punt != 0 )
+    {
+        if (c == pos)
+        {
+            return punt->elemento;
+        }
+        devolver(punt->sig, pos, ++c);
+    }
+}
+
+template <typename T>
+void Lista<T>::inic()
+{
+    iterator = primero;
+}
+
+template <typename T>
+void Lista<T>::sig()
+{
+    iterator = iterator->sig;
+}
+
+template <typename T>
+const T& Lista<T>::elemento()
+{
+    return iterator->elemento;
+}
+
+template <typename T>
+bool Lista<T>::final()
+{
+    return (iterator == 0);
+}
+
+
+
+
+/***********************************************************************************/
+
 template class Lista<int>;

@@ -4,17 +4,6 @@
 template <typename T>
 class Lista
 {
-    public:
-        Lista();
-        virtual ~Lista();
-        void agregarAlPrincipio(T elemento);
-        void agregarAlFinal(T elemento);
-        void agregarEnPos(int pos, T elemento);
-        int size() const;
-        void imprimir();
-
-    protected:
-
     private:
         struct nodo
         {
@@ -23,9 +12,30 @@ class Lista
         };
         nodo* primero;
         nodo* ultimo;
+        nodo* iterator;
         int cantidad;
 
+        //metodos para el uso recursivo
         void agregarEnPos(nodo* &punt, int pos, T elemento, int c);
+        bool esta(nodo* punt, T elemento);
+        const T & devolver(nodo* punt, int pos, int c);
+
+    public:
+        Lista();
+        virtual ~Lista();
+        void agregarAlPrincipio(T elemento);
+        void agregarAlFinal(T elemento);
+        void agregarEnPos(int pos, T elemento);
+        int size() const; //retorna el tamaño de la lista
+        bool esVacia() const; // verifica que si la lista es vacia
+        bool esta(T elemento); //verifica si esta el elemento
+        const T & devolver(int pos); //devuelve elemento segun posicion
+
+        // metodo para recorrer de manera iterativa
+        void inic();
+        void sig();
+        const T & elemento();
+        bool final();
 };
 
 #endif // LISTA_H
