@@ -45,10 +45,11 @@ int main()
     else
         cout << "el elemento NO esta en la lista" << endl;
 
-    lista->eliminar(9);
+    lista->eliminar(0);
     imprimirLista(lista);
-    lista->agregarAlFinal(50);
+    lista->agregarAlPrincipio(50);
     cout << "elemento agregado" << endl;
-    imprimirLista(lista);
+    lista->~Lista();
+    cout << "lista eliminada " << lista->devolver(0) << endl;
     return 0;
 }

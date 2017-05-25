@@ -86,7 +86,10 @@ int Lista<T>::size() const
 template <typename T>
 Lista<T>::~Lista()
 {
-    //dtor
+    while (primero != 0)
+    {
+        eliminar(0);
+    }
 }
 
 template <typename T>
@@ -168,20 +171,33 @@ void Lista<T>::eliminar(int pos)
     nodo* aEliminar;
     int c = 0;
     bool termino = 0;
-    while (!termino)
+    if (pos > 0)
     {
-        if (c == pos-1)
+        while (!termino)
         {
-            aEliminar = cursor->sig;
-            if (ultimo == aEliminar)
-                ultimo = cursor;
-            cursor->sig = aEliminar->sig;
-            delete aEliminar;
-            aEliminar = 0;
-            termino = 1;
+            if (c == pos-1)
+            {
+                aEliminar = cursor->sig;
+                if (ultimo == aEliminar)
+                    ultimo = cursor;
+                cursor->sig = aEliminar->sig;
+                delete aEliminar;
+                aEliminar = 0;
+                termino = 1;
+            }
+            c++;
+            cursor =cursor->sig;
         }
-        c++;
-        cursor =cursor->sig;
+    }
+    if ( pos == 0)
+    {
+        aEliminar = cursor;
+                if (ultimo == aEliminar)
+                    ultimo = 0;
+                cursor = aEliminar->sig;
+                delete aEliminar;
+                aEliminar = 0;
+                primero = cursor;
     }
     cantidad--;
 }
