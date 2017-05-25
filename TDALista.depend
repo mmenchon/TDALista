@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1495666507 source:c:\users\mariano\documents\mega\analisis y diseño de algoritmos i\tp especial\tdalista\lista.cpp
+1495674569 source:c:\users\mariano\documents\mega\analisis y diseño de algoritmos i\tp especial\tdalista\lista.cpp
 	"Lista.h"
 	<iostream>
+	<assert.h>
 
-1495667545 c:\users\mariano\documents\mega\analisis y diseño de algoritmos i\tp especial\tdalista\lista.h
+1495670618 c:\users\mariano\documents\mega\analisis y diseño de algoritmos i\tp especial\tdalista\lista.h
 
-1495667083 source:c:\users\mariano\documents\mega\analisis y diseño de algoritmos i\tp especial\tdalista\main.cpp
+1495674537 source:c:\users\mariano\documents\mega\analisis y diseño de algoritmos i\tp especial\tdalista\main.cpp
 	<iostream>
 	"Lista.h"
 

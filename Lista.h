@@ -30,6 +30,7 @@ class Lista
         bool esVacia() const; // verifica que si la lista es vacia
         bool esta(T elemento); //verifica si esta el elemento
         const T & devolver(int pos); //devuelve elemento segun posicion
+        void eliminar(int pos);
 
         // metodo para recorrer de manera iterativa
         void inic();

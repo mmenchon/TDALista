@@ -1,5 +1,6 @@
 #include "Lista.h"
 #include <iostream>
+#include <assert.h>
 using namespace std;
 template <typename T>
 Lista<T>::Lista()
@@ -115,17 +116,15 @@ bool Lista<T>::esta(nodo* punt, T elemento)
 }
 
 template <typename T>
-const T &Lista<T>::devolver(int pos)
+const T& Lista<T>::devolver(int pos)
 {
-    if (pos < cantidad)
-    {
-        int c = 0;
-       return devolver(primero, pos,c);
-    }
+    assert(pos < cantidad);
+    int c = 0;
+    return devolver(primero, pos,c);
 }
 
 template <typename T>
-const T &Lista<T>::devolver(nodo *punt, int pos, int c)
+const T& Lista<T>::devolver(nodo *punt, int pos, int c)
 {
     if (punt != 0 )
     {
@@ -161,6 +160,31 @@ bool Lista<T>::final()
     return (iterator == 0);
 }
 
+template <typename T>
+void Lista<T>::eliminar(int pos)
+{
+    assert(pos < cantidad);
+    nodo* cursor = primero;
+    nodo* aEliminar;
+    int c = 0;
+    bool termino = 0;
+    while (!termino)
+    {
+        if (c == pos-1)
+        {
+            aEliminar = cursor->sig;
+            if (ultimo == aEliminar)
+                ultimo = cursor;
+            cursor->sig = aEliminar->sig;
+            delete aEliminar;
+            aEliminar = 0;
+            termino = 1;
+        }
+        c++;
+        cursor =cursor->sig;
+    }
+    cantidad--;
+}
 
 
 
