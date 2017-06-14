@@ -12,7 +12,7 @@ class Lista
         };
         nodo* primero;
         nodo* ultimo;
-        nodo* iterator;
+        nodo* iterador;
         int cantidad;
 
         //metodos para el uso recursivo
@@ -30,13 +30,13 @@ class Lista
         bool esVacia() const; // verifica que si la lista es vacia
         bool esta(T elemento); //verifica si esta el elemento
         const T & devolver(int pos); //devuelve elemento segun posicion
-        void eliminar(int pos);
+        void eliminar(int pos); //elimina un nodo dado una posicion
 
         // metodo para recorrer de manera iterativa
-        void inic();
-        void sig();
-        const T & elemento();
-        bool final();
+        void inic(); //reinicia el puntero iterator a la posicion primera
+        void sig(); //hace que el puntero iterator apunte al siguiente
+        const T & elemento(); //retorna el elemento del nodo en el cual iterator esta apuntando
+        bool final(); // verifica si iterator esta en el ultimo nodo
 };
 
 #endif // LISTA_H

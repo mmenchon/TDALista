@@ -5,9 +5,9 @@ using namespace std;
 template <typename T>
 Lista<T>::Lista()
 {
-    primero = 0;
-    ultimo = 0;
-    iterator = primero;
+    primero = nullptr;
+    ultimo = nullptr;
+    iterador = primero;
     cantidad = 0;
 }
 
@@ -28,8 +28,8 @@ void Lista<T>::agregarAlFinal(T elemento)
 {
     nodo* nuevo = new nodo();
     nuevo->elemento = elemento;
-    nuevo->sig = 0;
-    if (primero == 0)
+    nuevo->sig = nullptr;
+    if (primero == nullptr)
     {
         primero = nuevo;
         ultimo = nuevo;
@@ -46,25 +46,29 @@ template <typename T>
 void Lista<T>::agregarEnPos(int pos, T elemento)
 {
     int c = 0;
-    if (pos < cantidad)
+    if (pos == 0)
     {
-        agregarEnPos(primero, pos, elemento, c);
-        cantidad++;
+        agregarAlPrincipio(elemento);
     }
     else
     {
-        if (pos == cantidad-1)
+        if (pos == cantidad)
         {
             agregarAlFinal(elemento);
-            cantidad++;
         }
+        else
+            if (pos < cantidad)
+            {
+                agregarEnPos(primero, pos, elemento, c);
+                cantidad++;
+            }
     }
 }
 
 template<typename T>
 void Lista<T>::agregarEnPos(nodo* &punt, int pos, T elemento, int c)
 {
-    if (punt != 0)
+    if (punt != nullptr)
     {
         if (c == pos)
         {
@@ -86,7 +90,7 @@ int Lista<T>::size() const
 template <typename T>
 Lista<T>::~Lista()
 {
-    while (primero != 0)
+    while (primero != nullptr)
     {
         eliminar(0);
     }
@@ -95,7 +99,7 @@ Lista<T>::~Lista()
 template <typename T>
 bool Lista<T>::esVacia() const
 {
-    return (primero == 0);
+    return (primero == nullptr);
 }
 
 template <typename T>
@@ -107,7 +111,7 @@ bool Lista<T>::esta(T elemento)
 template <typename T>
 bool Lista<T>::esta(nodo* punt, T elemento)
 {
-    if (punt != 0)
+    if (punt != nullptr)
     {
         if (punt->elemento == elemento)
             return true;
@@ -129,38 +133,38 @@ const T& Lista<T>::devolver(int pos)
 template <typename T>
 const T& Lista<T>::devolver(nodo *punt, int pos, int c)
 {
-    if (punt != 0 )
+    if (punt != nullptr )
     {
         if (c == pos)
         {
             return punt->elemento;
         }
-        devolver(punt->sig, pos, ++c);
+        return devolver(punt->sig, pos, ++c);
     }
 }
 
 template <typename T>
 void Lista<T>::inic()
 {
-    iterator = primero;
+    iterador = primero;
 }
 
 template <typename T>
 void Lista<T>::sig()
 {
-    iterator = iterator->sig;
+    iterador = iterador->sig;
 }
 
 template <typename T>
 const T& Lista<T>::elemento()
 {
-    return iterator->elemento;
+    return iterador->elemento;
 }
 
 template <typename T>
 bool Lista<T>::final()
 {
-    return (iterator == 0);
+    return (iterador == nullptr);
 }
 
 template <typename T>
@@ -182,7 +186,7 @@ void Lista<T>::eliminar(int pos)
                     ultimo = cursor;
                 cursor->sig = aEliminar->sig;
                 delete aEliminar;
-                aEliminar = 0;
+                aEliminar = nullptr;
                 termino = 1;
             }
             c++;
@@ -193,10 +197,10 @@ void Lista<T>::eliminar(int pos)
     {
         aEliminar = cursor;
                 if (ultimo == aEliminar)
-                    ultimo = 0;
+                    ultimo = nullptr;
                 cursor = aEliminar->sig;
                 delete aEliminar;
-                aEliminar = 0;
+                aEliminar = nullptr;
                 primero = cursor;
     }
     cantidad--;
@@ -207,3 +211,7 @@ void Lista<T>::eliminar(int pos)
 /***********************************************************************************/
 
 template class Lista<int>;
+template class Lista<char>;
+template class Lista<bool>;
+template class Lista<float>;
+template class Lista<double>;
